@@ -10,10 +10,17 @@ export const StyledInputEmail = styled(Field)`
   font-size: 15px;
   line-height: 1.33333;
   color: #060e1e;
+  outline: none;
+  transition: border 250ms cubic-bezier(0.4, 0, 0.2, 1);
 
   &::placeholder {
     font-size: 15px;
     line-height: 1.33333;
     color: #a1abb5;
+  }
+
+  &:hover,
+  &:focus {
+    border: 1.2px solid #316fea;
   }
 `;

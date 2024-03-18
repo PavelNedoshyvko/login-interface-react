@@ -1,4 +1,4 @@
-import { Form } from "formik";
+import { ErrorMessage, Form } from "formik";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 
@@ -87,4 +87,8 @@ export const SignUp = styled.span`
 export const SignUpLink = styled(Link)`
   font-weight: 500;
   color: #316fea;
+`;
+
+export const ErrMessage = styled(ErrorMessage)`
+  color: #060e1e;
 `;

@@ -8,6 +8,7 @@ import { SocialLoginButton } from "../components/UI/SocialLoginButton/SocialLogi
 import { SubmitButton } from "../components/UI/SubmitButton/SubmitButton";
 import {
   Delimiter,
+  ErrMessage,
   ForgotPasswordPageLink,
   ForgotPasswordPageLinkWrap,
   FormInputWrap,
@@ -19,22 +20,15 @@ import {
 } from "./LoginPage.styled";
 import icons from "/icons.svg";
 
-// const emailRegExp = /^(\+?\d+)?\s*(\(\d+\))?[\s-]*([\d-]*)$/;
-// const passwordRegExp = /^(([a-zA-Z' -]{1,80})|([а-яА-ЯЁёІіЇїҐґЄє' -]{1,80}))$/u;
+const emailRegExp = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 
 const LoginSchema = Yup.object().shape({
   email: Yup.string()
-    // .matches(
-    //   emailRegExp,
-    //   "Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz."
-    // )
-    .required("Required!"),
+    .matches(emailRegExp, `Email should be like "test@gmail.com"`)
+    .required("Email required!"),
   password: Yup.string()
-    // .matches(
-    //   passwordRegExp,
-    //   "Phone number must be digits and can contain dashes, parentheses and can start with +"
-    // )
-    .required("Required!"),
+    .min(8, "Too short! The password should be at least 8 characters long")
+    .required("Password required!"),
 });
 
 const LoginPage = () => {
@@ -82,30 +76,43 @@ const LoginPage = () => {
           actions.resetForm();
         }}
       >
-        <LoginForm>
-          <FormInputWrap>
-            <InputWrap>
-              <InputEmail name="email" placeholder={"Work email"} />
-              <InputPassword
-                name="password"
-                icon={icons + "#icon-eye"}
-                iconWidth={"20px"}
-                iconHeight={"20px"}
-              />
-            </InputWrap>
-            <ForgotPasswordPageLinkWrap>
-              <ForgotPasswordPageLink to={"/forgot-password"}>
-                Forgot your password?
-              </ForgotPasswordPageLink>
-            </ForgotPasswordPageLinkWrap>
-          </FormInputWrap>
-          <SubmitButton
-            title={"Log in to Qencode"}
-            onClick={handleClickSubmitButton}
-          />
-        </LoginForm>
+        {({ values, handleChange }) => (
+          <LoginForm>
+            <FormInputWrap>
+              <InputWrap>
+                <InputEmail
+                  name="email"
+                  placeholder={"Work email"}
+                  onChange={handleChange}
+                />
+                <ErrMessage name="email" component="div" />
+                {values.email && (
+                  <>
+                    <InputPassword
+                      name="password"
+                      icon={icons + "#icon-eye"}
+                      iconWidth={"20px"}
+                      iconHeight={"20px"}
+                    />
+                    <ErrMessage name="password" component="div" />
+                  </>
+                )}
+              </InputWrap>
+              {values.email && (
+                <ForgotPasswordPageLinkWrap>
+                  <ForgotPasswordPageLink to={"/forgot-password"}>
+                    Forgot your password?
+                  </ForgotPasswordPageLink>
+                </ForgotPasswordPageLinkWrap>
+              )}
+            </FormInputWrap>
+            <SubmitButton
+              title={"Log in to Qencode"}
+              onClick={handleClickSubmitButton}
+            />
+          </LoginForm>
+        )}
       </Formik>
-
       <span>
         Is your company new to Qencode? <SignUpLink>Sign up</SignUpLink>
       </span>
