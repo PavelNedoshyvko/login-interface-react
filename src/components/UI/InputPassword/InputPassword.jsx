@@ -4,8 +4,9 @@ import {
   StyledInputPassword,
   StyledInputPasswordWrap,
 } from "./InputPassword.styled";
+import icons from "/icons.svg";
 
-export const InputPassword = ({ name, icon, iconWidth, iconHeight }) => {
+export const InputPassword = ({ name }) => {
   const [showPassword, setShowPassword] = useState(false);
 
   const togglePasswordVisibility = () => {
@@ -19,12 +20,8 @@ export const InputPassword = ({ name, icon, iconWidth, iconHeight }) => {
         placeholder="Password"
         type={showPassword ? "text" : "password"}
       />
-      <Icon
-        width={iconWidth}
-        height={iconHeight}
-        onClick={togglePasswordVisibility}
-      >
-        <use href={icon} />
+      <Icon onClick={togglePasswordVisibility}>
+        <use href={icons + "#icon-eye"} />
       </Icon>
     </StyledInputPasswordWrap>
   );

@@ -11,6 +11,7 @@ import {
 } from "./ForgotPasswordPage.styled";
 import { InputEmail } from "../components/UI/InputEmail/InputEmail";
 import { SubmitButton } from "../components/UI/SubmitButton/SubmitButton";
+import { useEffect, useState } from "react";
 
 const emailRegExp = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 
@@ -21,6 +22,14 @@ const EmailSchema = Yup.object().shape({
 });
 
 const ForgotPasswordPage = () => {
+  const [isSubmitted, setIsSubmitted] = useState(false);
+
+  useEffect(() => {
+    if (isSubmitted) {
+      window.location.href = "/reset-password";
+    }
+  }, [isSubmitted]);
+
   return (
     <AuthorizationContainer>
       <Logo />
@@ -33,6 +42,7 @@ const ForgotPasswordPage = () => {
         onSubmit={(values, actions) => {
           console.log(values);
           actions.resetForm();
+          setIsSubmitted(true);
         }}
       >
         <ForgotPasswordForm>

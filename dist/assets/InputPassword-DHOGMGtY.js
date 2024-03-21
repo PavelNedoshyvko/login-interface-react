@@ -1,12 +1,7 @@
-import { Field } from "formik";
-import styled from "styled-components";
-
-export const StyledInputPasswordWrap = styled.div`
+import{u as o,r as n,j as s}from"./index-rvWVo9VO.js";import{d as p,i as a}from"./SubmitButton-CIU_IVMW.js";const c=o.div`
   position: relative;
   width: 100%;
-`;
-
-export const StyledInputPassword = styled(Field)`
+`,l=o(p)`
   width: 100%;
   height: 48px;
   padding: 0px 15px;
@@ -28,13 +23,11 @@ export const StyledInputPassword = styled(Field)`
   &:focus {
     border: 1.2px solid #316fea;
   }
-`;
-
-export const Icon = styled.svg`
+`,x=o.svg`
   position: absolute;
   top: 14px;
   right: 15px;
   width: 20px;
   height: 20px;
   cursor: pointer;
-`;
+`,w=({name:e})=>{const[t,r]=n.useState(!1),i=()=>{r(d=>!d)};return s.jsxs(c,{children:[s.jsx(l,{name:e,placeholder:"Password",type:t?"text":"password"}),s.jsx(x,{onClick:i,children:s.jsx("use",{href:a+"#icon-eye"})})]})};export{w as I};

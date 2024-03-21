@@ -15,6 +15,9 @@ export const ForgotPasswordForm = styled(Form)`
 `;
 
 export const InputWrap = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
   margin-bottom: 25px;
 `;
 

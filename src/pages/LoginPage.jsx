@@ -40,10 +40,6 @@ const LoginPage = () => {
     return console.log("clicked Github Login Button");
   };
 
-  const handleClickSubmitButton = () => {
-    return console.log("clicked Submit Button");
-  };
-
   return (
     <AuthorizationContainer>
       <Logo />
@@ -88,12 +84,7 @@ const LoginPage = () => {
                 <ErrMessage name="email" component="div" />
                 {values.email && (
                   <>
-                    <InputPassword
-                      name="password"
-                      icon={icons + "#icon-eye"}
-                      iconWidth={"20px"}
-                      iconHeight={"20px"}
-                    />
+                    <InputPassword name="password" />
                     <ErrMessage name="password" component="div" />
                   </>
                 )}
@@ -106,10 +97,7 @@ const LoginPage = () => {
                 </ForgotPasswordPageLinkWrap>
               )}
             </FormInputWrap>
-            <SubmitButton
-              title={"Log in to Qencode"}
-              onClick={handleClickSubmitButton}
-            />
+            <SubmitButton title={"Log in to Qencode"} />
           </LoginForm>
         )}
       </Formik>
